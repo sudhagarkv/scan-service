@@ -26,6 +26,6 @@ RUN pip3 install azure-cli --break-system-packages
 ENV GO111MODULE=on
 WORKDIR /src
 COPY ./db/migrations /database
-COPY infrastructure/migrate.sh /src
+COPY --chmod=500 infrastructure/migrate.sh /src
 
 RUN go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
