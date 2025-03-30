@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+
+  build-env:
+    image: golang:1.22.0-alpine3.19
+    environment:
+      - GO111MODULE=on
+      - GOSUMDB=off
+    platform: linux/amd64
+    volumes:
+      - type: volume
+        source: scan_service_dep
+        target: /go
+      - type: bind
+        source: ../
+        target: /scan-service
+    working_dir: /scan-service
+
+volumes:
+  scan_service_dep:
